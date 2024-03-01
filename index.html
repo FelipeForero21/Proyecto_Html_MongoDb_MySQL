@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Proyecto HTML - FELIPE FORERO </title>
+</head>
+<body>
+    <h1>Proyecto HTML - FELIPE FORERO </h1>
+
+    <h2>VISTAS en MySQL</h2>
+    <p>Las VISTAS en MySQL son como tablas virtuales que te permiten visualizar datos de una o más tablas subyacentes. Se crean a partir de una consulta SELECT y actúan como una capa intermedia entre los usuarios y las tablas reales.</p>
+    <button onclick="openModal('modal1')">Ejemplo 1</button>
+    <button onclick="openModal('modal2')">Ejemplo 2</button>
+    <button onclick="openModal('modal3')">Ejemplo 3</button>
+    <button onclick="openModal('modal4')">Ejemplo 4</button>
+    <button onclick="openModal('modal5')">Ejemplo 5</button>
+    
+    <!-- Modales -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal1')">&times;</span>
+        <p>Ejemplo de creación: <code>CREATE VIEW Vista_Correos AS SELECT nombres, apellidos, correo FROM users;</code></p>
+        <p>Ejemplo de uso: <code>SELECT * FROM Vista_Correos;</code></p>
+        <p>Ejemplo de eliminación: <code>DROP VIEW Vista_Correos;</code></p>
+      </div>
+    </div>
+    
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal2')">&times;</span>
+        <p>Ejemplo de creación: <code>CREATE VIEW persona_gusta_merengue AS SELECT nombres, apellidos, musica FROM users WHERE musica = 'merengue';</code></p>
+        <p>Ejemplo de uso: <code>SELECT * FROM persona_gusta_merengue;</code></p>
+      </div>
+    </div>
+    
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal3')">&times;</span>
+        <p>Ejemplo de creación: <code>CREATE VIEW persona_llamada_felipe AS SELECT nombres, apellidos FROM users WHERE nombres LIKE '%Felipe%';</code></p>
+        <p>Ejemplo de uso: <code>SELECT * FROM persona_llamada_felipe;</code></p>
+      </div>
+    </div>
+    
+    <div id="modal4" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal4')">&times;</span>
+        <p>Ejemplo de creación: <code>CREATE VIEW persona_24_años AS SELECT nombres, apellidos, edad FROM users WHERE edad = 24;</code></p>
+        <p>Ejemplo de uso: <code>SELECT * FROM persona_24_años;</code></p>
+      </div>
+    </div>
+    
+    <div id="modal5" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('modal5')">&times;</span>
+        <p>Ejemplo de creación: <code>CREATE VIEW personas_de_Ecuador_o_Venezuela AS SELECT nombres, apellidos, pais FROM users WHERE pais = 'Ecuador' OR pais = 'Venezuela';</code></p>
+        <p>Ejemplo de uso: <code>SELECT * FROM personas_de_Ecuador_o_Venezuela;</code></p>
+      </div>
+    </div>
+
+    <h2>Procedimientos Almacenados en MySQL</h2>
+    <p>Los procedimientos almacenados son programas que se almacenan en la base de datos y se pueden ejecutar desde una consulta SQL o desde otro procedimiento almacenado. Permiten automatizar tareas complejas y mejorar el rendimiento de las consultas.</p>
+    
+    <button onclick="openModal('modal6')">Ejemplo 1</button>
+    <button onclick="openModal('modal7')">Ejemplo 2</button>
+    <button onclick="openModal('modal8')">Ejemplo 3</button>
+    <button onclick="openModal('modal9')">Ejemplo 4</button>
+    <button onclick="openModal('modal10')">Ejemplo 5</button>
+
+   <div id="modal6" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal6')">&times;</span>
+        <h3>Obtener datos básicos</h3>
+        <p>Este procedimiento devuelve los nombres y apellidos de los usuarios:</p>
+        <pre>
+CREATE PROCEDURE obtener_datos_basicos()
+BEGIN
+    SELECT nombres, apellidos FROM users;
+END //
+        </pre>
+        <p>Ejecución: <code>CALL obtener_datos_basicos;</code></p>
+    </div>
+</div>
+
+<div id="modal7" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal7')">&times;</span>
+        <h3>Obtener edad y país</h3>
+        <p>Este procedimiento devuelve la edad y el país de los usuarios:</p>
+        <pre>
+CREATE PROCEDURE obtener_edad_y_pais()
+BEGIN
+    SELECT edad, pais FROM users;
+END //
+        </pre>
+        <p>Ejecución: <code>CALL obtener_edad_y_pais;</code></p>
+    </div>
+</div>
+
+<div id="modal8" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal8')">&times;</span>
+        <h3>Personas llamadas Felipe</h3>
+        <p>Este procedimiento devuelve los nombres y apellidos de las personas cuyo nombre es Felipe:</p>
+        <pre>
+CREATE PROCEDURE persona_llamada_felipe()
+BEGIN
+    SELECT nombres, apellidos FROM users WHERE nombres LIKE "%Felipe%";
+END //
+        </pre>
+        <p>Ejecución: <code>CALL persona_llamada_felipe;</code></p>
+    </div>
+</div>
+
+<div id="modal9" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal9')">&times;</span>
+        <h3>Personas mayores de 50 años y que les gusta el vallenato</h3>
+        <p>Este procedimiento devuelve los nombres, edades y géneros musicales de las personas mayores de 50 años que les gusta el vallenato:</p>
+        <pre>
+CREATE PROCEDURE persona_mayor_50_y_gusta_vallenato()
+BEGIN
+    SELECT nombres, edad, musica FROM users WHERE musica = "vallenato" AND edad >= 50;
+END //
+        </pre>
+        <p>Ejecución: <code>CALL persona_mayor_50_y_gusta_vallenato;</code></p>
+    </div>
+</div>
+
+<div id="modal10" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal10')">&times;</span>
+        <h3>Nombres que no se repiten</h3>
+        <p>Este procedimiento devuelve los nombres que no se repiten en la tabla de usuarios:</p>
+        <pre>
+CREATE PROCEDURE nombres_que_no_se_repiten()
+BEGIN
+    SELECT DISTINCT nombres FROM users;
+END //
+        </pre>
+        <p>Ejecución: <code>CALL nombres_que_no_se_repiten;</code></p>
+    </div>
+</div>
+    <h2>Diferencia entre SQL y NoSQL</h2>
+    <p>SQL se basa en un modelo relacional con tablas estructuradas y un esquema fijo. Es bueno para transacciones complejas y garantiza la consistencia. NoSQL, por otro lado, ofrece flexibilidad en el esquema y escalabilidad horizontal.</p>
+
+    <h2>¿Qué es MongoDB?</h2>
+    <p>MongoDB es un sistema de gestión de bases de datos NoSQL que almacena datos en documentos flexibles similares a JSON. Ofrece escalabilidad horizontal, alto rendimiento y consultas potentes.</p>
+
+    <h2>Operaciones básicas en MongoDB</h2>
+    <h3>Listar</h3>
+    <p>Ejemplo de listar: <code>db.empleados.find({departamento: "Ventas"})</code></p>
+    <h3>Actualizar</h3>
+    <p>Ejemplo de actualizar: <code>db.empleados.updateOne({_id: "12345"}, {$set: {salario: 2000}})</code></p>
+    <h3>Eliminar</h3>
+    <p>Ejemplo de eliminar: <code>db.empleados.deleteOne({_id: "12345"})</code></p>
+    <h3>Inserción</h3>
+    <p>Ejemplo de inserción: <code>db.empleados.insertOne({nombre: "Juan", apellido: "Pérez", departamento: "Ventas"})</code></p>
+<script src="/modal.js"></script>
+</body>
+</html>
